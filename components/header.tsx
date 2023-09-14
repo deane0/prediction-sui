@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
 import { ConnectWallet } from './connect-wallet'
+import { RefreshButton } from './refresh-button'
+import { Claim } from './claim'
 
 export function Header() {
   return (
@@ -27,7 +29,9 @@ export function Header() {
           </Link>
         </div>
 
-        <div>
+        <div className="space-x-2">
+          <RefreshButton />
+          <Claim />
           <ConnectWallet />
         </div>
       </div>
