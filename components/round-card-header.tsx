@@ -1,8 +1,8 @@
 import { cn } from '@/lib/utils'
-import { type NodeRound, RoundStatus } from '@/types'
+import { type Round, RoundStatus } from '@/types'
 
 export interface RoundCardHeaderProps {
-  round: NodeRound
+  round: Round
 }
 
 export function RoundCardHeader({ round }: RoundCardHeaderProps) {
