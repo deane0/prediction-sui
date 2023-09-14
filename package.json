@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "bunx next dev",
-    "lint": "bunx next lint",
-    "build": "bunx next build",
-    "start": "bunx next start",
-    "format": "bunx prettier -w ."
+    "dev": "next dev",
+    "lint": "next lint",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier -w ."
   },
   "dependencies": {
     "@mysten/sui.js": "^0.42.0",
