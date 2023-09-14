@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Button } from './ui/button'
+
+import { ConnectWallet } from './connect-wallet'
 
 export function Header() {
   return (
@@ -27,9 +28,7 @@ export function Header() {
         </div>
 
         <div>
-          <Button className="rounded-full" size="lg">
-            Connect Wallet
-          </Button>
+          <ConnectWallet />
         </div>
       </div>
     </header>
