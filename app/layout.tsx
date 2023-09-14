@@ -1,9 +1,12 @@
+import type { Metadata } from 'next'
+
 import '@/styles/globals.css'
 import { Header } from '@/components/header'
 import { Providers } from './providers'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'SUI Prediction',
+  icons: [{ rel: 'icon', url: '/favicon.svg', type: 'image/svg+xml' }],
 }
 
 export interface RootLayoutProps {
