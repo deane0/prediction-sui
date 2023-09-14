@@ -3,12 +3,13 @@
 import { useState } from 'react'
 import { ConnectButton, useWalletKit } from '@mysten/wallet-kit'
 import { TransactionBlock } from '@mysten/sui.js/transactions'
+import BigNumber from 'bignumber.js'
 
 import { suiClient } from '@/lib/sui'
 import { CONTRACT_ADDRESS, EPOCH_ID, ROUNDS_ID } from '@/constants'
+import { useToast } from '@/components/ui/use-toast'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import BigNumber from 'bignumber.js'
 
 enum Action {
   ENTER_UP = 'betUp',
@@ -19,6 +20,7 @@ export function EnterPosition() {
   const { isConnected, signAndExecuteTransactionBlock } = useWalletKit()
 
   const [amount, setAmount] = useState(0)
+  const { toast } = useToast()
 
   const handleSubmit = async (action: Action) => {
     const txb = new TransactionBlock()
@@ -56,7 +58,21 @@ export function EnterPosition() {
       })
 
       console.log(res)
-    } catch (error) {}
+
+      toast({
+        variant: 'default',
+        title:
+          action === Action.ENTER_UP ? 'Bet Bull Success' : 'Bet Bear Success',
+        description: ``, // TODO
+      })
+    } catch (error) {
+      // TODO
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: error.message ?? 'Unknown error',
+      })
+    }
   }
 
   if (!isConnected) {

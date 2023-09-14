@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { TransactionBlock } from '@mysten/sui.js/transactions'
 import { useWalletKit } from '@mysten/wallet-kit'
 
@@ -15,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { useToast } from '@/components/ui/use-toast'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
@@ -22,8 +23,9 @@ export function Claim() {
   const { signAndExecuteTransactionBlock } = useWalletKit()
 
   const [roundNum, setRoundNum] = useState<number>()
+  const { toast } = useToast()
 
-  const handleClaim = useCallback(async () => {
+  const handleClaim = async () => {
     const txb = new TransactionBlock()
     txb.moveCall({
       target: `${CONTRACT_ADDRESS}::prediction::claim`,
@@ -39,9 +41,23 @@ export function Claim() {
           showEffects: true,
         },
       })
+
       console.log(res)
-    } catch (error) {}
-  }, [roundNum, signAndExecuteTransactionBlock])
+
+      toast({
+        variant: 'default',
+        title: 'Claim Success',
+        description: `You have claimed your reward.`, // TODO
+      })
+    } catch (error) {
+      // TODO
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: error.message ?? 'Unknown error',
+      })
+    }
+  }
 
   return (
     <Dialog>

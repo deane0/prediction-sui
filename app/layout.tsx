@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import '@/styles/globals.css'
+import { Toaster } from '@/components/ui/toaster'
 import { Header } from '@/components/header'
 import { Providers } from './providers'
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Providers>
           <Header />
           <main>{children}</main>
+          <Toaster />
         </Providers>
       </body>
     </html>
