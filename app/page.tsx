@@ -3,6 +3,8 @@ import { Suspense } from 'react'
 import { RoundsLoading } from '@/components/rounds-loading'
 import { Rounds } from '@/components/rounds'
 
+export const revalidate = 6
+
 export default function RootPage() {
   return (
     <>
