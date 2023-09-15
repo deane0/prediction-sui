@@ -38,7 +38,7 @@ export async function Rounds({
       resizeObserver
     >
       {rounds.map((round) => (
-        <SwiperSlide key={round.epoch} className="w-80">
+        <SwiperSlide key={round.epoch} className="!w-80">
           <RoundCard round={round} lastTokenPrice={lastTokenPrice} />
         </SwiperSlide>
       ))}
