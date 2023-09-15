@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
 import { RoundsLoading } from '@/components/rounds-loading'
-import { Rounds } from '@/components/rounds'
+import { RoundsWrapper } from '@/components/rounds-wrapper'
 
 export const revalidate = 6
 
@@ -11,7 +11,7 @@ export default function RootPage() {
       <section>
         <div className="container">
           <Suspense fallback={<RoundsLoading />}>
-            <Rounds />
+            <RoundsWrapper />
           </Suspense>
         </div>
       </section>

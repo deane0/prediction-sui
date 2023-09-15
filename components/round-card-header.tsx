@@ -12,7 +12,12 @@ export function RoundCardHeader({ round }: RoundCardHeaderProps) {
   if (round.status === RoundStatus.NEXT) title = 'Next'
 
   return (
-    <div className="flex justify-between items-center px-4 md:px-6 py-1">
+    <div
+      className={cn(
+        'flex justify-between items-center px-4 md:px-6 py-1 rounded-t-2xl',
+        round.status === RoundStatus.NEXT && 'bg-indigo-600 text-white',
+      )}
+    >
       <div className="flex justify-center items-center">
         {/* TODO: Icon */}
         <span

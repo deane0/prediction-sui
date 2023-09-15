@@ -6,6 +6,12 @@ import {
   getRoundPosition,
 } from '@/helpers'
 import { BetPosition, Round, RoundStatus } from '@/types'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 export interface RoundResultProps {
   round: Round
@@ -30,20 +36,39 @@ export function RoundResult({ round, lastPrice }: RoundResultProps) {
         {status === RoundStatus.LIVE && 'LAST PRICE'}
       </div>
       <div className="flex justify-between mb-5">
-        <div
-          className={cn('text-green-600 font-semibold text-xl', {
-            'text-green-600': betPosition === BetPosition.BULL,
-            'text-red-600': betPosition === BetPosition.BEAR,
-          })}
-        >
-          {formatUsd(
-            {
-              value: round.status === RoundStatus.PAST ? closePrice : lastPrice,
-              decimals: 18,
-            },
-            4,
-          )}
-        </div>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div
+                className={cn('text-green-600 font-semibold text-xl', {
+                  'text-green-600': betPosition === BetPosition.BULL,
+                  'text-red-600': betPosition === BetPosition.BEAR,
+                  'decoration-wavy underline': status === RoundStatus.LIVE,
+                  'decoration-green-600':
+                    status === RoundStatus.LIVE &&
+                    betPosition === BetPosition.BULL,
+                  'decoration-red-600':
+                    status === RoundStatus.LIVE &&
+                    betPosition === BetPosition.BEAR,
+                })}
+              >
+                {formatUsd(
+                  {
+                    value:
+                      round.status === RoundStatus.PAST
+                        ? closePrice
+                        : lastPrice,
+                    decimals: 18,
+                  },
+                  4,
+                )}
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Last price from Supra Oracle</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <div
           className={cn(
             'rounded text-white px-2 flex justify-center items-center',
