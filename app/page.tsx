@@ -10,7 +10,7 @@ export default function RootPage() {
   return (
     <>
       <section>
-        <div className="container pt-20">
+        <div className="container py-20">
           <SUIPrice />
         </div>
       </section>

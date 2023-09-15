@@ -48,11 +48,15 @@ function formatPriceDifference({
   return `${unitPrefix}${formatAmount(amount, displayedDecimals)}`
 }
 
-export function formatUsd(amount: Amount, displayedDecimals: number) {
+export function formatUsd(
+  amount: Amount,
+  displayedDecimals: number,
+  unitPrefix = '$',
+) {
   return formatPriceDifference({
     amount,
     minDisplayed: calculateMinDisplayed(amount.decimals, displayedDecimals),
-    unitPrefix: '$',
+    unitPrefix,
     displayedDecimals,
   })
 }

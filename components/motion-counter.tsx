@@ -13,12 +13,18 @@ type CounterProps = {
   from: number
   to: number
   duration: number
+  displayedDecimals?: number
 }
 
-export function MotionCounter({ from, to, duration }: CounterProps) {
+export function MotionCounter({
+  from,
+  to,
+  duration,
+  displayedDecimals = 6,
+}: CounterProps) {
   const count = useMotionValue(from)
   const rounded = useTransform(count, (latest) => {
-    return latest.toFixed(6)
+    return latest.toFixed(displayedDecimals)
   })
   const ref = useRef(null)
   const inView = useInView(ref)
