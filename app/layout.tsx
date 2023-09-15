@@ -19,11 +19,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <Header />
-          <main>{children}</main>
-          <Toaster />
-        </Providers>
+        <div className="min-h-screen flex flex-col">
+          <Providers>
+            <Header />
+            <main className="flex-1 bg-sky-100">{children}</main>
+            <Toaster />
+          </Providers>
+        </div>
       </body>
     </html>
   )

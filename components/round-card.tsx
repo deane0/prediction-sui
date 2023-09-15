@@ -12,8 +12,8 @@ export function RoundCard({ round, lastTokenPrice }: RoundCardProps) {
   return (
     <div
       className={cn(
-        'border rounded-2xl flex flex-col drop-shadow-xl',
-        round.status === RoundStatus.PAST && 'opacity-70 hover:opacity-100',
+        'border rounded-2xl flex flex-col drop-shadow-xl bg-white',
+        round.status === RoundStatus.PAST && 'opacity-80 hover:opacity-100',
         round.status === RoundStatus.LIVE && 'shadow-violet-600',
       )}
     >
