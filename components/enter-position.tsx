@@ -96,7 +96,7 @@ export function EnterPosition() {
       <div>
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full bg-green-600 text-primary-foreground hover:bg-green-600/90"
           onClick={() => handleSubmit(Action.ENTER_UP)}
         >
           Enter UP
@@ -105,7 +105,7 @@ export function EnterPosition() {
       <div>
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full bg-red-600 text-primary-foreground hover:bg-red-600/90"
           onClick={() => handleSubmit(Action.ENTER_DOWN)}
         >
           Enter DOWN
