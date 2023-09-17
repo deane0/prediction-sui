@@ -1,3 +1,5 @@
+import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
 import {
   formatToken,
@@ -6,13 +8,7 @@ import {
   getRoundPosition,
 } from '@/helpers'
 import { BetPosition, Round, RoundStatus } from '@/types'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-import { OracleSUIPrice } from './oracle-sui-price'
+import { LastPrice } from './last-price'
 
 export interface RoundResultProps {
   round: Round
@@ -32,71 +28,43 @@ export function RoundResult({ round, lastPrice }: RoundResultProps) {
 
   return (
     <>
-      <div className="mb-3 text-sm font-semibold">
-        {status === RoundStatus.PAST && 'CLOSED PRICE'}
-        {status === RoundStatus.LIVE && 'LAST PRICE'}
-      </div>
-      <div className="flex justify-between mb-5">
-        {status === RoundStatus.LIVE ? (
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div
-                  className={cn(
-                    'text-green-600 font-semibold text-xl decoration-wavy underline',
-                    {
-                      'text-green-600 decoration-green-600':
-                        betPosition === BetPosition.BULL,
-                      'text-red-600 decoration-red-600':
-                        betPosition === BetPosition.BEAR,
-                    },
-                  )}
-                >
-                  <OracleSUIPrice initialPrice={lastPrice} />
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Last price from Supra Oracle</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        ) : (
-          <div
-            className={cn('text-green-600 font-semibold text-xl', {
-              'text-green-600': betPosition === BetPosition.BULL,
-              'text-red-600': betPosition === BetPosition.BEAR,
-            })}
-          >
-            {formatUsd({ value: closePrice, decimals: 18 }, 4)}
+      {status === RoundStatus.PAST && (
+        <>
+          <div className="mb-3 text-sm font-semibold">CLOSED PRICE</div>
+          <div className="flex justify-between mb-5">
+            <div
+              className={cn('text-green-600 font-semibold text-xl', {
+                'text-green-600': betPosition === BetPosition.BULL,
+                'text-red-600': betPosition === BetPosition.BEAR,
+              })}
+            >
+              {formatUsd({ value: closePrice, decimals: 18 }, 4)}
+            </div>
+            <div
+              className={cn(
+                'rounded text-white px-2 flex justify-center items-center',
+                {
+                  'bg-green-600': betPosition === BetPosition.BULL,
+                  'bg-red-600': betPosition === BetPosition.BEAR,
+                },
+              )}
+            >
+              {betPosition === BetPosition.BEAR && (
+                <ArrowDownIcon className="w-4 h-4" />
+              )}
+              {betPosition === BetPosition.BULL && (
+                <ArrowUpIcon className="w-4 h-4" />
+              )}
+              <span>
+                {formatUsd({ value: priceDifference, decimals: 18 }, 4)}
+              </span>
+            </div>
           </div>
-        )}
-        <div
-          className={cn(
-            'rounded text-white px-2 flex justify-center items-center',
-            {
-              'bg-green-600': betPosition === BetPosition.BULL,
-              'bg-red-600': betPosition === BetPosition.BEAR,
-            },
-          )}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-4 h-4"
-          >
-            <path d="m5 12 7-7 7 7" />
-            <path d="M12 19V5" />
-          </svg>
-          <span>{formatUsd({ value: priceDifference, decimals: 18 }, 4)}</span>
-        </div>
-      </div>
+        </>
+      )}
+      {status === RoundStatus.LIVE && (
+        <LastPrice lastPrice={lastPrice} lockPrice={lockPrice} />
+      )}
       <div className="flex justify-between items-center mb-1">
         <span>Locked Price:</span>
         <span>{formatUsd({ value: lockPrice, decimals: 18 }, 4)}</span>
