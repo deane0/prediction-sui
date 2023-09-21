@@ -68,6 +68,9 @@ export async function RoundsWrapper() {
           totalAmount,
           lockTimestamp,
           closeTimestamp,
+          upaddress,
+          downaddress,
+          upordown,
         },
       }) => {
         const epoch = Number(epochStr)
@@ -88,8 +91,15 @@ export async function RoundsWrapper() {
           totalAmount: BigInt(totalAmount),
           lockTimestamp: Number(lockTimestamp),
           closeTimestamp: Number(closeTimestamp),
-          upAddresses: [],
-          downAddresses: [],
+          upAddresses: {
+            id: upaddress.fields.id.id,
+            size: Number(upaddress.fields.size),
+          },
+          downAddresses: {
+            id: downaddress.fields.id.id,
+            size: Number(downaddress.fields.size),
+          },
+          upOrDown: upordown,
         }
       },
     )

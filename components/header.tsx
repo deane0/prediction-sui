@@ -23,7 +23,7 @@ export function Header() {
               </g>
             </svg>
             <span className="hidden text-xl font-semibold italic ml-2 md:block">
-              <span className="text-sky-600">SUI</span>{' '}
+              <span className="text-sky-600">Sui</span>{' '}
               <span className="text-blue-600">Prediction</span>
             </span>
           </Link>

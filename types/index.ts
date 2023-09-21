@@ -23,8 +23,10 @@ export interface Round {
   lockTimestamp: number
   closeTimestamp: number
 
-  upAddresses: string[]
-  downAddresses: string[]
+  upAddresses: { id: string; size: number }
+  downAddresses: { id: string; size: number }
+
+  upOrDown: boolean
 }
 
 export interface RoundsFields {
@@ -75,4 +77,10 @@ export interface LastTokenPriceValueFields {
   decimal: number
   round: string
   timestamp: string
+}
+
+export interface AddressValueFields {
+  id: { id: string }
+  name: `0x${string}`
+  value: bigint
 }
