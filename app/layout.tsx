@@ -4,6 +4,7 @@ import 'swiper/css'
 import '@/styles/globals.css'
 import { Toaster } from '@/components/ui/toaster'
 import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
@@ -22,7 +23,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <div className="min-h-screen flex flex-col">
           <Providers>
             <Header />
-            <main className="flex-1 bg-sky-100">{children}</main>
+            <main className="flex-1 bg-sky-100 py-20">{children}</main>
+            <Footer />
             <Toaster />
           </Providers>
         </div>

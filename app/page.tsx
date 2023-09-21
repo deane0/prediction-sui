@@ -1,8 +1,10 @@
 import { Suspense } from 'react'
+import Script from 'next/script'
 
 import { RoundsLoading } from '@/components/rounds-loading'
 import { RoundsWrapper } from '@/components/rounds-wrapper'
 import { SUIPrice } from '@/components/sui-price'
+import TradingViewWidget from '@/components/trading-view'
 
 export const revalidate = 6
 
@@ -10,7 +12,7 @@ export default function RootPage() {
   return (
     <>
       <section>
-        <div className="container py-20">
+        <div className="container">
           <SUIPrice />
         </div>
       </section>
@@ -21,7 +23,11 @@ export default function RootPage() {
           </Suspense>
         </div>
       </section>
-      <section></section>
+      <section>
+        <div className="h-96">
+          <TradingViewWidget />
+        </div>
+      </section>
     </>
   )
 }
