@@ -5,6 +5,7 @@ import { RoundsLoading } from '@/components/rounds-loading'
 import { RoundsWrapper } from '@/components/rounds-wrapper'
 import { SUIPrice } from '@/components/sui-price'
 import TradingViewWidget from '@/components/trading-view'
+import { PriceChartTabs } from '@/components/price-chart-tabs'
 
 export const revalidate = 6
 
@@ -24,9 +25,7 @@ export default function RootPage() {
         </div>
       </section>
       <section>
-        <div className="h-96">
-          <TradingViewWidget />
-        </div>
+        <PriceChartTabs />
       </section>
     </>
   )

@@ -5,7 +5,7 @@ import { buttonVariants } from './ui/button'
 
 export function Footer() {
   return (
-    <footer className="bg-white">
+    <footer className="bg-foreground text-background">
       <div className="container flex flex-col justify-center space-y-2 md:space-y-0 md:flex-row-reverse md:justify-between items-center py-6">
         <div className="space-x-2">
           <Link
